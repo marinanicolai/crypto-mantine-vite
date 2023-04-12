@@ -6,6 +6,7 @@ import { Portfolio } from "./pages/Portfolio/Portfolio";
 import { useCryptoCurrencyStore } from "./store";
 import { fetchDataAndCache } from "./api";
 import "./App.css";
+import { CryptoCurrency } from "./types/CryptoCurrency";
 
 function App() {
   const [currencies, setCurrencies] = useCryptoCurrencyStore((state) => [
@@ -18,14 +19,14 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetchDataAndCache(apiUrl);
+        const response = await fetchDataAndCache(apiUrl, 10 * 60 * 1000);
+        const jsonData = await response.json();
+        const entities = jsonData.map((data: any) => new CryptoCurrency(data));
         if (!response.ok) {
           throw new Error("Failed to fetch data from API");
         }
-        const data = await response.json();
-        setCurrencies(data);
-        console.log("this is from app");
-        console.log(data);
+
+        setCurrencies(entities);
       } catch (error) {
         console.error(error);
       }
