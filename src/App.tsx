@@ -24,6 +24,7 @@ function App() {
         }
         const data = await response.json();
         setCurrencies(data);
+        console.log("this is from app");
         console.log(data);
       } catch (error) {
         console.error(error);
