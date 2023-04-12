@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { Currencies } from "./pages/Currencies/Currencies";
 import { Portfolio } from "./pages/Portfolio/Portfolio";
 import { useCryptoCurrencyStore } from "./store";
+import { fetchDataAndCache } from "./api";
 import "./App.css";
 
 function App() {
@@ -17,9 +18,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          apiUrl
-        );
+        const response = await fetchDataAndCache(apiUrl);
         if (!response.ok) {
           throw new Error("Failed to fetch data from API");
         }
@@ -36,7 +35,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="" element={<Currencies name={""} />} />
+      <Route path="" element={<Currencies />} />
       <Route path="/portfolio" element={<Portfolio name={""} />} />
     </Routes>
   );
