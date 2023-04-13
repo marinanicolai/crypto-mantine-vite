@@ -1,10 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import geckoLogo from "./assets/coin-gecko.png";
 import { Routes, Route } from "react-router-dom";
 import { Currencies } from "./pages/Currencies/Currencies";
 import { Portfolio } from "./pages/Portfolio/Portfolio";
+import { AppHeader } from "./components/Header";
 import { useCryptoCurrencyStore } from "./store";
 import { fetchDataAndCache } from "./api";
+import { ColorSchemeProvider, ColorScheme,MantineProvider } from "@mantine/core";
+
 import "./App.css";
 import { CryptoCurrency } from "./types/CryptoCurrency";
 
@@ -13,6 +16,10 @@ function App() {
     state.currencies,
     state.setCurrencies,
   ]);
+  const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+
   const apiUrl =
     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false";
 
@@ -36,10 +43,23 @@ function App() {
   }, [apiUrl, setCurrencies]);
 
   return (
-    <Routes>
-      <Route path="" element={<Currencies />} />
-      <Route path="/portfolio" element={<Portfolio name={""} />} />
-    </Routes>
+    <ColorSchemeProvider
+      colorScheme={colorScheme}
+      toggleColorScheme={toggleColorScheme}
+    >
+      <MantineProvider
+        theme={{ colorScheme }}
+        withGlobalStyles
+        withNormalizeCSS
+      >
+        {" "}
+        <AppHeader />
+        <Routes>
+          <Route path="" element={<Currencies />} />
+          <Route path="/portfolio" element={<Portfolio name={""} />} />
+        </Routes>
+      </MantineProvider>
+    </ColorSchemeProvider>
   );
 }
 
