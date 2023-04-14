@@ -4,9 +4,14 @@ import { Routes, Route } from "react-router-dom";
 import { Currencies } from "./pages/Currencies/Currencies";
 import { Portfolio } from "./pages/Portfolio/Portfolio";
 import { AppHeader } from "./components/Header";
+import { AppFooter } from "./components/Footer";
 import { useCryptoCurrencyStore } from "./store";
 import { fetchDataAndCache } from "./api";
-import { ColorSchemeProvider, ColorScheme,MantineProvider } from "@mantine/core";
+import {
+  ColorSchemeProvider,
+  ColorScheme,
+  MantineProvider,
+} from "@mantine/core";
 
 import "./App.css";
 import { CryptoCurrency } from "./types/CryptoCurrency";
@@ -58,6 +63,7 @@ function App() {
           <Route path="" element={<Currencies />} />
           <Route path="/portfolio" element={<Portfolio name={""} />} />
         </Routes>
+        <AppFooter />
       </MantineProvider>
     </ColorSchemeProvider>
   );
