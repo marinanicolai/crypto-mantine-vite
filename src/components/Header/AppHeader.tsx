@@ -17,7 +17,7 @@ export const AppHeader = () => {
     <>
       <Container>
         <Grid>
-          <UtilityNav />
+          {/* <UtilityNav /> */}
           <Grid.Col span={1} offset={1} style={{ minHeight: rem(80) }}>
             <ActionIcon
               variant="outline"
