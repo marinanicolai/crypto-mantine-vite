@@ -2,11 +2,11 @@ import React, { FC } from "react";
 import { useCryptoCurrencyStore } from "../../store";
 import { Table, Text } from "@mantine/core";
 import { CryptoTitleWithIcon, CryptoPriceChange } from "../../components";
+import { IconChartCandle } from "@tabler/icons-react";
+import { HeaderPage } from "../../components/Page/PageHeader";
 
 export const Currencies = () => {
   const currencies = useCryptoCurrencyStore((state) => state.currencies);
-  console.log("this is currencies from currencies page");
-  console.log(currencies);
 
   const rows = currencies.map((crypto, i) => (
     <tr key={crypto.marketCapRank}>
@@ -33,6 +33,7 @@ export const Currencies = () => {
 
   return (
     <>
+      <HeaderPage title="Currencies" icon={<IconChartCandle />} />
       <Table horizontalSpacing={0} verticalSpacing={10}>
         <thead>
           <tr>

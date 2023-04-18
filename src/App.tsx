@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
 import geckoLogo from "./assets/coin-gecko.png";
 import { Routes, Route } from "react-router-dom";
+import { IconChartCandle, IconBriefcase } from "@tabler/icons-react";
 import { Currencies } from "./pages/Currencies/Currencies";
 import { Portfolio } from "./pages/Portfolio/Portfolio";
 import { AppHeader } from "./components/Header";
 import { AppFooter } from "./components/Footer";
+import { PageLink } from "./components";
 import { useCryptoCurrencyStore } from "./store";
 import { fetchDataAndCache } from "./api";
 import {
   ColorSchemeProvider,
   ColorScheme,
   MantineProvider,
+  AppShell,
+  Navbar,
 } from "@mantine/core";
 
 import "./App.css";
@@ -57,13 +61,47 @@ function App() {
         withGlobalStyles
         withNormalizeCSS
       >
-        {" "}
-        <AppHeader />
-        <Routes>
-          <Route path="" element={<Currencies />} />
-          <Route path="/portfolio" element={<Portfolio name={""} />} />
-        </Routes>
-        <AppFooter />
+        <AppShell
+          padding="md"
+          fixed
+          navbar={
+            <Navbar top={0} bottom={0} width={{ base: 200 }} p="0" mt={7}>
+              {
+                <>
+                  <AppHeader />
+                  <PageLink
+                    label={"Currencies"}
+                    page=""
+                    icon={<IconChartCandle />}
+                    color="blue"
+                  />
+                  <PageLink
+                    label={"Portfolio"}
+                    page="portfolio"
+                    icon={<IconBriefcase />}
+                    color="blue"
+                  />
+                </>
+              }
+            </Navbar>
+          }
+          styles={(theme) => ({
+            main: {
+              backgroundColor:
+                theme.colorScheme === "dark"
+                  ? theme.colors.dark[8]
+                  : theme.colors.gray[0],
+            },
+          })}
+        >
+          {" "}
+          {/* <AppHeader /> */}
+          <Routes>
+            <Route path="" element={<Currencies />} />
+            <Route path="/portfolio" element={<Portfolio name={""} />} />
+          </Routes>
+          <AppFooter />
+        </AppShell>
       </MantineProvider>
     </ColorSchemeProvider>
   );

@@ -1,6 +1,8 @@
 import React from "react";
 import { IconSun, IconMoonStars } from "@tabler/icons-react";
 import { UtilityNav } from "./UtilityNav";
+import { IconChartCandle } from "@tabler/icons-react";
+//import { HeaderPage } from "../Page/PageHeader";
 import {
   ActionIcon,
   useMantineColorScheme,
@@ -18,6 +20,7 @@ export const AppHeader = () => {
       <Container>
         <Grid>
           {/* <UtilityNav /> */}
+          {/* //<HeaderPage title="Currencies" icon={<IconChartCandle />} /> */}
           <Grid.Col span={1} offset={1} style={{ minHeight: rem(80) }}>
             <ActionIcon
               variant="outline"
