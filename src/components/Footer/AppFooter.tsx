@@ -44,7 +44,7 @@ export const AppFooter = () => {
         </Grid>
         <Grid>
           <Grid.Col style={{ minHeight: rem(80) }}>
-            Created by <strong>Vlad Ciuca</strong> / Powered by
+            Created by <strong>Marina Nicolai</strong> / Powered by
             {/* <Img>
               <img
                 src="https://static.coingecko.com/s/thumbnail-007177f3eca19695592f0b8b0eabbdae282b54154e1be912285c9034ea6cbaf2.png"
