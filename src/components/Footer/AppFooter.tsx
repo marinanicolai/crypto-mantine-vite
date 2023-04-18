@@ -45,13 +45,11 @@ export const AppFooter = () => {
         <Grid>
           <Grid.Col style={{ minHeight: rem(80) }}>
             Created by <strong>Marina Nicolai</strong> / Powered by
-            {/* <Img>
-              <img
-                src="https://static.coingecko.com/s/thumbnail-007177f3eca19695592f0b8b0eabbdae282b54154e1be912285c9034ea6cbaf2.png"
-                alt="CoinGheko"
-                width="100%"
-              />
-            </Img> */}
+            <Img
+              src="https://static.coingecko.com/s/thumbnail-007177f3eca19695592f0b8b0eabbdae282b54154e1be912285c9034ea6cbaf2.png"
+              alt="CoinGheko"
+              width="100%"
+            />
             <strong>CoinGecko API</strong>
             <span className={"hide-xs"}> - 2021</span>
           </Grid.Col>
