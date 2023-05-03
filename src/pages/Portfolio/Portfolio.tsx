@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { HeaderPage } from "../../components";
 import { IconBriefcase } from "@tabler/icons-react";
-import { Button } from "@mantine/core";
+import { Button, Group, Table } from "@mantine/core";
 
 interface Props {
   name: string;
@@ -11,16 +11,29 @@ export const Portfolio: FC<Props> = ({ name }) => {
   const [opened, setOpened] = useState<boolean>(false);
   return (
     <div>
-      <HeaderPage title="Portfolio" icon={<IconBriefcase />} />
-      <Button
-        onClick={() => setOpened(true)}
-        style={{ outline: "none" }}
-        variant="outline"
-      >
-        Add Coin
-      </Button>
+      <Group position="apart">
+        <HeaderPage title="Portfolio" icon={<IconBriefcase />} />
+        <Button
+          onClick={() => setOpened(true)}
+          style={{ outline: "none" }}
+          variant="outline"
+        >
+          Add Coin
+        </Button>
+      </Group>
 
-      <h1>Hello, this is portfolio page {name}!</h1>
+      <Table horizontalSpacing={0} verticalSpacing={10}>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>24h %</th>
+            <th>Holdings</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>row with data</tbody>
+      </Table>
     </div>
   );
 };
