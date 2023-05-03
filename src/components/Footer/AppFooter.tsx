@@ -18,18 +18,18 @@ export const AppFooter = () => {
     <>
       <Container>
         <Grid>
-          <Grid.Col span={3} style={{ minHeight: rem(80) }}>
+          <Grid.Col span={3} style={{ minHeight: rem(80) }} color="blue">
             <a
               href="https://www.linkedin.com/in/marinanicolaidev/"
               target="_blank"
               rel="noreferrer"
             >
-              <FaLinkedin size="1.5rem" />
+              <FaLinkedin size="1.5rem" color="#228BE6" />
             </a>
           </Grid.Col>
           <Grid.Col span={3} style={{ minHeight: rem(80) }}>
             <a href="mailto:nicolaimarina@gmail.com">
-              <HiMail size="1.6rem" />
+              <HiMail size="1.6rem" color="#228BE6" />
             </a>
           </Grid.Col>
           <Grid.Col span={3} style={{ minHeight: rem(80) }}>
@@ -38,7 +38,7 @@ export const AppFooter = () => {
               target="_blank"
               rel="noreferrer"
             >
-              <FaGithubSquare size="1.55rem" />
+              <FaGithubSquare size="1.55rem" color="#228BE6" />
             </a>
           </Grid.Col>
         </Grid>
