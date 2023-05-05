@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { HeaderPage } from "../../components";
 import { IconBriefcase } from "@tabler/icons-react";
 import { Button, Group, Table } from "@mantine/core";
+import { CryptoCurrencyHolding } from "../../types/CryptoCurrencyHolding";
 
 interface Props {
   name: string;
@@ -9,6 +10,9 @@ interface Props {
 
 export const Portfolio: FC<Props> = ({ name }) => {
   const [opened, setOpened] = useState<boolean>(false);
+  const [portofolio, setPortofolio] = useState<CryptoCurrencyHolding[]>([]);
+
+  const rows = "this is row of data";
   return (
     <div>
       <Group position="apart">
@@ -32,7 +36,7 @@ export const Portfolio: FC<Props> = ({ name }) => {
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>row with data</tbody>
+        <tbody>{rows}</tbody>
       </Table>
     </div>
   );
