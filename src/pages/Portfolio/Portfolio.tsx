@@ -1,7 +1,8 @@
 import { FC, useState } from "react";
-import { HeaderPage } from "../../components";
+import { CryptoPriceChange, CryptoTitleWithIcon, HeaderPage } from "../../components";
 import { IconBriefcase } from "@tabler/icons-react";
 import { Button, Group, Table } from "@mantine/core";
+import {AddCoinDialog} from "./AddCoinDialog";
 import { CryptoCurrencyHolding } from "../../types/CryptoCurrencyHolding";
 
 interface Props {
@@ -12,7 +13,12 @@ export const Portfolio: FC<Props> = ({ name }) => {
   const [opened, setOpened] = useState<boolean>(false);
   const [portofolio, setPortofolio] = useState<CryptoCurrencyHolding[]>([]);
 
-  const rows = "this is row of data";
+  const rows = portofolio.map((crypto, i) => (
+    <tr key={i}>
+        <td><CryptoTitleWithIcon name={crypto.currency.name} symbol={crypto.currency.symbol} icon={crypto.currency.image}/></td>
+    </tr>
+  ))
+  console.log(portofolio);
   return (
     <div>
       <Group position="apart">
@@ -38,6 +44,11 @@ export const Portfolio: FC<Props> = ({ name }) => {
         </thead>
         <tbody>{rows}</tbody>
       </Table>
+      <AddCoinDialog cryptoList={currencies}
+                          onAddCrypto={handleAddCrypto}
+                          onClose={() => {
+                              setOpened(false);
+                          }} opened={opened}/>
     </div>
   );
 };
