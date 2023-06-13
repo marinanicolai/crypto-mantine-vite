@@ -1,1 +1,1 @@
-export { useCryptoCurrencyStore } from "./useCryptoCurrencyStore.ts";
+export { useCryptoCurrencyStore } from "./useCryptoCurrencyStore.js";
