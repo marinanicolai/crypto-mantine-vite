@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { CryptoPriceChange, CryptoTitleWithIcon, HeaderPage } from "../../components";
-import { IconBriefcase } from "@tabler/icons-react";
-import { Button, Group, Table } from "@mantine/core";
+import { IconBriefcase, IconDotsVertical, IconTrash } from "@tabler/icons-react";
+import { Button, Group, Table, Text ,Menu ,ActionIcon} from "@mantine/core";
 import {AddCoinDialog} from "./AddCoinDialog";
 import { CryptoCurrencyHolding } from "../../types/CryptoCurrencyHolding";
 import { useCryptoCurrencyStore } from '../../store/index';
@@ -24,6 +24,23 @@ export const Portfolio: FC<Props> = ({ name }) => {
   const rows = portfolio.map((crypto, i) => (
     <tr key={i}>
         <td><CryptoTitleWithIcon name={crypto.currency.name} symbol={crypto.currency.symbol} icon={crypto.currency.image}/></td>
+        <td><Text size="md" weight={500}>{"$" + crypto.currency.currentPrice}</Text></td>
+        <td><CryptoPriceChange priceChange={crypto.currency.priceChangePercentage24h}/></td>
+        <td>
+                <Group spacing={5}>
+                    <Text size="md" weight={500}>{(crypto.amount*crypto.currency.currentPrice).toFixed(2) + "$"}</Text>
+                    <Text size="sm" tt="uppercase"  c="dimmed" >{crypto.amount+ " " + crypto.currency.symbol}</Text>
+                </Group>
+        </td>
+        <td><ContextMenu 
+                onDelete={() => {
+                    const newPortfolio = portfolio.filter((_, index) => index !== i);
+                    setPortfolio(newPortfolio);
+                    localStorage.setItem('portfolio', JSON.stringify(newPortfolio));
+                }} 
+                onEdit={() => {
+ 
+                }}/></td>
     </tr>
   ))
   console.log(portfolio);
@@ -58,5 +75,25 @@ export const Portfolio: FC<Props> = ({ name }) => {
                               setOpened(false);
                           }} opened={opened}/>
     </div>
+  );
+};
+
+type ContextMenuProps = {
+  onDelete: () => void;
+  onEdit: () => void;
+};
+const ContextMenu = (props: ContextMenuProps) => {
+  
+  return (
+      <Menu shadow="md" width={200}>
+          <Menu.Target>
+              <ActionIcon><IconDotsVertical size={16} color="#BDBDBD"/></ActionIcon>
+          </Menu.Target>
+
+          <Menu.Dropdown>
+              {/*<Menu.Item onClick={props.onEdit} icon={<IconEdit size={14} />}>Edit</Menu.Item>*/}
+              <Menu.Item onClick={props.onDelete} color="red" icon={<IconTrash size={14} />}>Delete</Menu.Item>
+          </Menu.Dropdown>
+      </Menu>
   );
 };
